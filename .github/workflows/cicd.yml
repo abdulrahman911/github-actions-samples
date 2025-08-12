@@ -5,6 +5,15 @@ on:
     branches:
       - main
       - dev
+  pull_request:
+    branches:
+      - staging
+    paths-ignore:
+      - "README.md"
+      - "kubernetes/**"
+      - ".doicker-ignore"
+    # branches-ignore:
+    #   - demo
 jobs:
   hello-job:
     runs-on: ubuntu-latest
@@ -15,3 +24,4 @@ jobs:
         run: echo "Hello From GitHub Actions!!!"
       - name: Read data from a file
         run: cat ./index.html
+        

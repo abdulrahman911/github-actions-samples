@@ -1,0 +1,30 @@
+name: Mytest Yaml Syntax
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+    paths-ignore:
+      - "README.md"
+jobs:
+  build-jobs:
+    name: Initial jobs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stages
+        uses: actions/checkout@v4
+      - name: List files and directory
+        run: ls
+      - name: Print hello world with name
+        run: echo "Hey Abdul, Insha Allah you gonna win. Keep doing"
+  docker-image-push-stage:
+    name: Doccker images build and push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stages
+        uses: actions/checkout@v4
+      - name: Create and Print my demo files
+        run: pwd && mkdir demo
+      - name: List folders and Files
+        run: ls
