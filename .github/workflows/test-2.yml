@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: artifact-testv2
-          path: testv2/testv2.html
+          path: testV2/testv2.html
   Build:
     name: This is build stage
     runs-on: ubuntu-latest
@@ -40,8 +40,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: artifact-testv2
-          path: testv2
+          path: testV2
       - name: Enter data into a files
         run: echo "My updated data entry into v2" >> testV2/testv2.html
       - name: Print file data
-        run: cat testV2/testv2.html
+        run: |
+          cat testV2/testv2.html
+          ls -a
