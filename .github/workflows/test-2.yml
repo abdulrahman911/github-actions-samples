@@ -1,0 +1,44 @@
+name: my Test v2 cicd yaml syntax mastering
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - staging
+    paths-ignore:
+      - "README.md"
+      - ".gitignore"
+  pull_request:
+    branches:
+      - features/**
+jobs:
+  Test-V2:
+    name: This my test job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stage
+        uses: actions/checkout@v4
+      - name: Print current working directory
+        run: ls && mkdir testV2
+      - name: Create a file
+        run: echo "this is my test v2 pipeline" > testV2/testv2.html
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-testv2
+          path: testv2
+  Build:
+    name: This is build stage
+    runs-on: ubuntu-latest
+    needs: [Test-V2]
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: artifact-testv2
+          path: testv2
+      - name: Enter data into a files
+        run: echo "My updated data entry into v2" >> testV2/testv2.html
+      - name: Print file data
+        run: cat testV2/testv2.html
