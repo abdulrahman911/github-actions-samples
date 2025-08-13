@@ -20,14 +20,17 @@ jobs:
       - name: Checkout stage
         uses: actions/checkout@v4
       - name: Print current working directory
-        run: ls && mkdir testV2
+        run: |
+          ls 
+          mkdir testV2
+          ls -a
       - name: Create a file
         run: echo "this is my test v2 pipeline" > testV2/testv2.html
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: artifact-testv2
-          path: testv2
+          path: testv2/testv2.html
   Build:
     name: This is build stage
     runs-on: ubuntu-latest
